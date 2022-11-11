@@ -17,7 +17,13 @@ public class PlayerMovement : MonoBehaviour
 
         var velocityInCameraSpace = cameraTransform.TransformDirection(velocity);
 
-        transform.position += velocityInCameraSpace;
+        var position = transform.position;
+        transform.position = new Vector3
+        {
+            x = position.x + velocityInCameraSpace.x,
+            y = position.y,
+            z = position.z + velocityInCameraSpace.z
+        };
 
         transform.LookAt(lockOnCoordinator.LockedOnPosition);
     }
